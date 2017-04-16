@@ -52,12 +52,17 @@ python cheetah.py -h
 	  -n , --number         specify the number of request parameters
 	  -u , --url            specify the webshell url
 	  -b , --url-file       specify batch webshell urls file
-	  -p [file [file ...]]  specify possword file(default pwd.list)
+	  -p file [file ...]    specify possword file(default pwd.list)
 	
 	use examples:
 	  python cheetah.py -u http://orz/orz.php
 	  python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
 	  python cheetah.py -u http://orz/orz.asp -r get -c -p pwd.list
-	  python cheetah.py -u http://orz/orz -w aspx -s apache -n 1000
+	  python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
 	  python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v
 
+# 0x03 screenshot
+
+![screenshot 1](../screenshot/1.png)
+![screenshot 2](../screenshot/2.png)
+![screenshot 3](../screenshot/3.png)
