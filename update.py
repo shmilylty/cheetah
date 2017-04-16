@@ -17,7 +17,7 @@ if os.path.exists(os.path.join(abs_dir,'.git')) == True:
     except Exception as e:
         print(red+'[!] '+str(e)+reset)
         exit(1)
-    print(white+'[=] update completed'+reset)
+    print(red+'[=] update completed'+reset)
     exit(0)
 else:
     print(green+'[*] the .git directory is not existing.'+reset)
@@ -28,5 +28,5 @@ else:
     except Exception as e:
         print(red+'[!] '+str(e)+reset)
         exit(1)
-    print(white+'[=] update completed'+reset)
+    print(red+'[=] update completed'+reset)
     exit(0)
