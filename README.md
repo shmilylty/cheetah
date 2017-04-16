@@ -62,7 +62,12 @@ python cheetah.py -h
 
 # 0x03 screenshot
 
+## Ubuntu
+![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/4.png)
+
+## Windows
 ![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/1.png)
 ![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/2.png)
 ![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/3.png)
-![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/4.png)
+
+
