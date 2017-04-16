@@ -63,6 +63,6 @@ python cheetah.py -h
 
 # 0x03 screenshot
 
-![screenshot 1](../screenshot/1.png)
-![screenshot 2](../screenshot/2.png)
-![screenshot 3](../screenshot/3.png)
+![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/1.png)
+![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/2.png)
+![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/3.png)
