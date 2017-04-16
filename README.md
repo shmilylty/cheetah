@@ -34,7 +34,7 @@ python cheetah.py -h
 	\___/  / / /_/ \___/ \___/ \__/  \____/  / / /_/
 	      /_/                               /_/
 	
-	a very fast webshell password violent crack tool.
+	a very fast brute force webshell password tool.
 	
 	usage: cheetah1.py [-h] [-i] [-v] [-c] [-up] [-r] [-w] [-s] [-n] [-u] [-b]
 	                   [-p [file [file ...]]]

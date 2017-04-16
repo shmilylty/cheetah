@@ -89,7 +89,7 @@ _  ___/__  __ \_  _ \_  _ \_  __/_  __ \ __  __ \
 \___/  / / /_/ \___/ \___/ \__/  \____/  / / /_/ 
       /_/                               /_/        
 
-a very fast webshell password violent crack tool.
+a very fast brute force webshell password tool.
     """
     print(white+banner+reset)
 
