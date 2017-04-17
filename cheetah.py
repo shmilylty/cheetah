@@ -58,22 +58,15 @@ def get_time():
 
 
 def print_highlight(message):
-    time = get_time()
-    if 'INFO'in message:
-        print(green+time+message+reset)
-        return
-    if 'WARN' in message:
-        print(yellow+time+message+reset)
-        return
-    if 'HINT' in message:
-        print(white+time+message+reset)
-        return
-    if 'ERROR' in message:
-        print(red+time+message+reset)
-        return
-    else:
-        print(white+time+message+reset)
-        return
+    times = get_time()
+    msg_level = {'INFO':green, 'HINT':white,
+                  'WARN':yellow, 'ERROR':red}
+    for level, color in msg_level.items():
+        if level in message:
+            print(color+times+message+reset)
+            return
+    print(white+time+message+reset)
+    return
 
 
 def quit(signum, frame):
@@ -158,20 +151,21 @@ def req_get(payload, times, options):
                          headers=header,
                          params=payload,
                          timeout=10)
+        error_msg = '[ERROR] web server of '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
         print_highlight('[ERROR] ' + str(e))
-        print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         return 'error'
 
     if r.status_code == 404:
-        print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url incorrect')
         print_highlight('[HINT] try to check the url '+options.url)
         return 'error'
 
     code = [413, 414, 500]
     if r.status_code in code:
-        print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url too long when request '+options.url)
         print_highlight('[HINT] try to specify a smaller value of parameter -n')
         return 'error'
@@ -189,7 +183,7 @@ def req_get(payload, times, options):
                 print_highlight('[INFO] password of '+options.url+' not in '+str(times)+' th group payload')
             return 'unfind'
     else:
-        print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         return 'error'
 
 
@@ -202,21 +196,25 @@ def req_post(payload, times, options):
         print_highlight('[INFO] posting '+str(times)+'th group payload to '+options.url)
         print_highlight('[HINT] waiting for web server response')
     try:
-        r = requests.post(url=options.url, headers=header, data=payload, timeout=10)
+        r = requests.post(url=options.url,
+                          headers=header,
+                          data=payload,
+                          timeout=10)
+        error_msg = '[ERROR] web server of '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
         print_highlight('[ERROR] '+str(e))
-        print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         return 'error'
 
     if r.status_code == 404:
-        print_highlight('[ERROR] web server '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url incorrect')
         print_highlight('[HINT] try to check the url '+options.url)
         return 'error'
 
     code = [413, 414, 500]
     if r.status_code in code:
-        print_highlight('[ERROR] web server '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url too long when request '+options.url)
         print_highlight('[HINT] try to specify a smaller value of parameter -n')
         return 'error'
@@ -235,7 +233,7 @@ def req_post(payload, times, options):
                 print_highlight('[INFO] the password of '+options.url+' not in '+str(times)+' th group payload')
             return 'notfind'
     else:
-        print_highlight('[ERROR] the web server of '+options.url+' response code: '+str(r.status_code))
+        print_highlight(error_msg)
         return 'error'
 
 
