@@ -5,7 +5,6 @@
 
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/) 
 [![Build Status](https://travis-ci.org/sunnyelf/cheetah.svg?branch=master)](https://travis-ci.org/sunnyelf/cheetah)
-[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cheetah-community/)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sunnyelf)
 
