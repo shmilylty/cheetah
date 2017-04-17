@@ -50,6 +50,7 @@ python cheetah.py -h
 	  -c, --clear           clear duplicate password(default disabled)
 	  -up, --update         update cheetah
 	  -r , --request        specify request method(default POST)
+	  -t , --time           specify request interval seconds(default 0)
 	  -w , --webshell       specify webshell type(default auto-detect)
 	  -s , --server         specify web server name(default auto-detect)
 	  -n , --number         specify the number of request parameters

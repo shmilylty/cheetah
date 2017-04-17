@@ -40,6 +40,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 	  -c, --clear           去重字典文件(默认禁用)
 	  -up, --update         更新cheetah
 	  -r , --request        指定请求方式(默认POST方式)
+	  -t , --time           指定请求间隔时间(默认0秒)
 	  -w , --webshell       指定webshell类型(默认自动探测)
 	  -s , --server         指定web服务器名称(默认自动探测)
 	  -n , --number         指定一次请求参数数量(默认自动设置)
