@@ -481,11 +481,10 @@ use examples:
         if os.path.exists(os.path.join(abs_dir, '.git')) is True:
             print('[*] hint: use "git pull origin master" update cheetah')
             exit(0)
-
         if os.path.isfile(os.path.join(abs_dir, 'update.py')) is False:
             print('[!] error: can not find file update.py')
             print('[*] hint: use "git clone '+__github__+'.git" to update')
-            print('[*] hint: open link '+__github__+'in browser to download')
+            print('[*] hint: open link '+__github__+' with browser to download')
             exit(0)
         else:
             print('[*] hint: try to use "python update.py" to update cheetah')
