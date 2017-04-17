@@ -1,5 +1,7 @@
 ![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.jpg)
 
+[English description](https://github.com/sunnyelf/cheetah/blob/master/README.md) | [中文说明](https://github.com/sunnyelf/cheetah/blob/master/README_zh.md)
+
 # 0x00 cheetah
 
 Cheetah is a dictionary-based brute force password webshell tool, running as fast as a cheetah hunt for prey. 
