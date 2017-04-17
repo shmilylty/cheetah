@@ -10,3 +10,4 @@ python:
   - "3.6"
   - "3.6-dev"
   - "3.7-dev"
+script: python cheetah.py -u http://example.com/shell.php
