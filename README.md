@@ -1,4 +1,4 @@
-![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.png)
+![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.jpg)
 
 # 0x00 cheetah
 
