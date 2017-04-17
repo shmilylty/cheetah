@@ -70,9 +70,11 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 
 	cheetah:
 	│  .gitignore
+	│  .travis.yml
 	│  cheetah.py          主程序
 	│  LICENSE
 	│  README.md
+	│  README_zh.md
 	│  update.py           更新模块
 	│
 	├─data
