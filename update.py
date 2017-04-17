@@ -8,7 +8,7 @@ reset = '\033[0m'
 abs_dir = os.path.dirname(os.path.abspath(__file__))
 
 print(green+'[*] trying to update cheetah'+reset)
-if os.path.exists(os.path.join(abs_dir,'.git')) == True:
+if os.path.exists(os.path.join(abs_dir, '.git')) is True:
     print(green+'[*] the .git directory is existing.'+reset)
     os.chdir(abs_dir)
     print(white+'[^] trying use git pull to update cheetah'+reset)
