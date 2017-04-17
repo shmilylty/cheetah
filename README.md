@@ -4,6 +4,7 @@
 
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/) 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cheetah-community/)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 # 0x00 cheetah
 
