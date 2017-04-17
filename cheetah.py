@@ -146,10 +146,13 @@ def gen_random_header(options):
 
 def req_get(payload, times, options):
     header = gen_random_header(options)
+    if options.time != 0:
+        print_highlight('[HINT] sleeping '+str(options.time)+' seconds to request')
+        time.sleep(options.time)
     if options.verbose:
         print_highlight('[INFO] geting '+str(times)+'th group payload to '+options.url)
-    if options.verbose:
-        print_highlight('[INFO] waiting for web server response')
+        print_highlight('[HINT] waiting for web server response')
+
     try:
         r = requests.get(url=options.url,
                          headers=header,
@@ -163,7 +166,7 @@ def req_get(payload, times, options):
     if r.status_code == 404:
         print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
         print_highlight('[WARN] maybe the request url incorrect')
-        print_highlight('[HINT] try to check the url: '+options.url)
+        print_highlight('[HINT] try to check the url '+options.url)
         return 'error'
 
     code = [413, 414, 500]
@@ -192,10 +195,12 @@ def req_get(payload, times, options):
 
 def req_post(payload, times, options):
     header = gen_random_header(options)
+    if options.time != 0:
+        print_highlight('[HINT] sleeping '+str(options.time)+' seconds to request')
+        time.sleep(options.time)
     if options.verbose:
-        print_highlight('[INFO] sending '+str(times)+'th group payload to '+options.url)
-    if options.verbose:
-        print_highlight('[INFO] waiting for web server response')
+        print_highlight('[INFO] posting '+str(times)+'th group payload to '+options.url)
+        print_highlight('[HINT] waiting for web server response')
     try:
         r = requests.post(url=options.url, headers=header, data=payload, timeout=10)
     except Exception as e:
@@ -206,7 +211,7 @@ def req_post(payload, times, options):
     if r.status_code == 404:
         print_highlight('[ERROR] web server '+options.url+' response code: '+str(r.status_code))
         print_highlight('[WARN] maybe the request url incorrect')
-        print_highlight('[HINT] try to check the url: '+options.url)
+        print_highlight('[HINT] try to check the url '+options.url)
         return 'error'
 
     code = [413, 414, 500]
@@ -236,7 +241,7 @@ def req_post(payload, times, options):
 
 def detect_web(options):
     print_highlight('[WARN] not specify the web server or shell type')
-    print_highlight('[INFO] detecting web server information of '+options.url)
+    print_highlight('[INFO] detecting server info of '+options.url)
     web_server_list = ['apache', 'nginx', 'iis']
     shell_type_list = ['php', 'aspx', 'asp', 'jsp']
     header = gen_random_header(options)
@@ -342,7 +347,7 @@ def dict_attack(options):
             exit(1)
         print_highlight('[HINT] using password file '+pwd_file_name)
 
-        print_highlight('[INFO] cracking webshell password of '+options.url)
+        print_highlight('[INFO] cracking password of '+options.url)
         payload = dict()
         times = 1
         pwd_find = ''
@@ -446,6 +451,8 @@ use examples:
     parser.add_argument('-r', '--request', default='post', dest='req_type',
                         choices=['GET', 'get', 'POST', 'post'], metavar='',
                         help="specify request method(default POST)")
+    parser.add_argument('-t', '--time', type=float, default=0, dest='time', metavar='',
+                        help='specify request interval seconds(default 0)')
     parser.add_argument('-w', '--webshell', default='detect', metavar='',
                         choices=['php', 'asp', 'aspx', 'jsp'],
                         help="specify webshell type(default auto-detect)",
@@ -505,9 +512,14 @@ use examples:
         print_highlight('[HINT] using POST request mode')
     if options.req_type == 'get':
         print_highlight('[HINT] using GET request mode')
+    if options.time < 0:
+        print_highlight('[ERROR] invalid request interval time '+str(options.time))
+        print_highlight('[INFO] the cheetah end execution')
+        exit(1)
+    print_highlight('[HINT] setting request interval seconds '+str(options.time))
     if options.url is not None:
         print_highlight('[HINT] using dictionary-based password attack')
-        print_highlight('[INFO] cracking webshell password of '+options.url)
+        print_highlight('[INFO] cracking password of '+options.url)
         attack_res = dict_attack(options)
     if options.url_file is not None:
         print_highlight('[HINT] using batch cracking mode')
