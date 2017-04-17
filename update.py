@@ -1,4 +1,5 @@
 import os
+import requests
 
 red = '\033[1;31m'
 green = '\033[1;32m'
@@ -17,7 +18,7 @@ if os.path.exists(os.path.join(abs_dir, '.git')) is True:
     except Exception as e:
         print(red+'[!] '+str(e)+reset)
         exit(1)
-    print(red+'[=] update completed'+reset)
+    print(res+'[=] update completed'+reset)
     exit(0)
 else:
     print(green+'[*] the .git directory is not existing.'+reset)
@@ -27,6 +28,10 @@ else:
         os.system('git clone https://github.com/sunnyelf/cheetah.git')
     except Exception as e:
         print(red+'[!] '+str(e)+reset)
-        exit(1)
+        print(green+'[*] trying to download latest cheetah.zip')
+        url = 'https://github.com/sunnyelf/cheetah/archive/master.zip'
+        r = requests.get(url) 
+        with open("cheetah.zip", "wb") as file:
+             file.write(r.content)
     print(red+'[=] update completed'+reset)
     exit(0)
