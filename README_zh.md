@@ -1,6 +1,6 @@
-![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.jpg)
+![cheetah logo](images/logo.jpg)
 
-[English description](https://github.com/sunnyelf/cheetah/blob/master/README.md) | [中文说明](https://github.com/sunnyelf/cheetah/blob/master/README_zh.md)
+[English description](README.md) | [中文说明](README_zh.md)
 
 # 0x00 介绍 #
 Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原理是能根据自动探测出的web服务设置相关参数一次性提交大量的探测密码进行爆破，爆破效率是其他普通webshell密码暴力破解工具上千倍。
@@ -83,12 +83,12 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 # 0x05 截图 #
 
 ## Ubuntu
-![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/4.png)
+![screenshot 4](images/4.png)
 
 ## Windows
-![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/1.png)
-![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/iamges/2.png)
-![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/3.png)
+![screenshot 1](images/1.png)
+![screenshot 2](iamges/2.png)
+![screenshot 3](images/3.png)
 
 # 0x06 问题 #
 

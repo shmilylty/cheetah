@@ -1,6 +1,6 @@
-![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.jpg)
+![cheetah logo](images/logo.jpg)
 
-[English description](https://github.com/sunnyelf/cheetah/blob/master/README.md) | [中文说明](https://github.com/sunnyelf/cheetah/blob/master/README_zh.md)
+[English description](README.md) | [中文说明](README_zh.md)
 
 # 0x00 cheetah
 
@@ -67,11 +67,11 @@ python cheetah.py -h
 # 0x03 screenshot
 
 ## Ubuntu
-![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/4.png)
+![screenshot 4](images/4.png)
 
 ## Windows
-![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/1.png)
-![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/iamges/2.png)
-![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/3.png)
+![screenshot 1](images/1.png)
+![screenshot 2](iamges/2.png)
+![screenshot 3](images/3.png)
 
 
