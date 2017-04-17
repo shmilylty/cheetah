@@ -1,3 +1,5 @@
+![cheetah logo](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/logo.png)
+
 # 0x00 cheetah
 
 Cheetah is a dictionary-based brute force password webshell tool, running as fast as a cheetah hunt for prey. 
@@ -63,11 +65,11 @@ python cheetah.py -h
 # 0x03 screenshot
 
 ## Ubuntu
-![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/4.png)
+![screenshot 4](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/4.png)
 
 ## Windows
-![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/1.png)
-![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/2.png)
-![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/screenshot/3.png)
+![screenshot 1](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/1.png)
+![screenshot 2](https://raw.githubusercontent.com/sunnyelf/cheetah/master/iamges/2.png)
+![screenshot 3](https://raw.githubusercontent.com/sunnyelf/cheetah/master/images/3.png)
 
 
