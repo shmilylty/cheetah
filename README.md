@@ -6,6 +6,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cheetah-community/)
 [![Build Status](https://travis-ci.org/sunnyelf/cheetah.svg?branch=master)](https://travis-ci.org/sunnyelf/cheetah)
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sunnyelf)
 
 # 0x00 cheetah
 
