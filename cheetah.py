@@ -172,7 +172,7 @@ def req_get(payload, times, options):
     code = [413, 414, 500]
     if r.status_code in code:
         print_highlight('[ERROR] web server of '+options.url+' response code: '+str(r.status_code))
-        print_highlight('[WARN] maybe the request url too long when request '++options.url)
+        print_highlight('[WARN] maybe the request url too long when request '+options.url)
         print_highlight('[HINT] try to specify a smaller value of parameter -n')
         return 'error'
 
@@ -512,8 +512,9 @@ use examples:
         print_highlight('[HINT] using POST request mode')
     if options.req_type == 'get':
         print_highlight('[HINT] using GET request mode')
-    if options.time < 0:
+    if options.time < 0 or options.time > 3600:
         print_highlight('[ERROR] invalid request interval time '+str(options.time))
+        print_highlight('[HINT] valid request interval seconds is 0 ~ 3600')
         print_highlight('[INFO] the cheetah end execution')
         exit(1)
     print_highlight('[HINT] setting request interval seconds '+str(options.time))
