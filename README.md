@@ -2,7 +2,7 @@
 
 [English description](README.md) | [中文说明](README_zh.md)
 
-[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cheetah-community/)
 
 # 0x00 cheetah
 
