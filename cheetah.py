@@ -451,7 +451,8 @@ use examples:
     parser.add_argument('-r', '--request', default='post', dest='req_type',
                         choices=['GET', 'get', 'POST', 'post'], metavar='',
                         help="specify request method(default POST)")
-    parser.add_argument('-t', '--time', type=float, default=0, dest='time', metavar='',
+    parser.add_argument('-t', '--time', type=float, default=0,
+                        dest='time', metavar='',
                         help='specify request interval seconds(default 0)')
     parser.add_argument('-w', '--webshell', default='detect', metavar='',
                         choices=['php', 'asp', 'aspx', 'jsp'],
