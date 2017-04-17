@@ -15,7 +15,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 - 自动探测web服务设置相关参数
 - 支持读取和去重超大密码字典文件
 - 支持python 2.x和3.x
-- 目前支持php，jsp，asp，aspx类型的webshell
+- 目前支持php、jsp、asp、aspx webshell
 
 # 0x02 参数说明 #
 
@@ -42,7 +42,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 	  -r , --request        指定请求方式(默认POST方式)
 	  -w , --webshell       指定webshell类型(默认自动探测)
 	  -s , --server         指定web服务器名称(默认自动探测)
-	  -n , --number         指定一次请求参数的数量(默认自动设置)
+	  -n , --number         指定一次请求参数数量(默认自动设置)
 	  -u , --url            指定webshell url地址
 	  -b , --url-file       指定批量webshell urls文件
 	  -p [file [file ...]]  指定多个字典文件(默认使用pwd.list)
@@ -61,7 +61,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 
 # 0x04 文件说明 #
 
-	cheetah:.
+	cheetah:
 	│  .gitignore
 	│  cheetah.py          主程序
 	│  LICENSE
