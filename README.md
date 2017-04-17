@@ -2,6 +2,8 @@
 
 [English description](README.md) | [中文说明](README_zh.md)
 
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
+
 # 0x00 cheetah
 
 Cheetah is a dictionary-based brute force password webshell tool, running as fast as a cheetah hunt for prey. 
