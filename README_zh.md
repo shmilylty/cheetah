@@ -1,6 +1,13 @@
 ![cheetah logo](images/logo.jpg)
 
 [English description](README.md) | [中文说明](README_zh.md)
+[English description](README.md) | [中文说明](README_zh.md)
+
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/) 
+[![Build Status](https://travis-ci.org/sunnyelf/cheetah.svg?branch=master)](https://travis-ci.org/sunnyelf/cheetah)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cheetah-community/)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sunnyelf)
 
 # 0x00 介绍 #
 Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原理是能根据自动探测出的web服务设置相关参数一次性提交大量的探测密码进行爆破，爆破效率是其他普通webshell密码暴力破解工具上千倍。
