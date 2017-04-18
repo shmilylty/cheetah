@@ -1,29 +1,13 @@
-diff --git a/.codeclimate.yml b/.codeclimate.yml
-index e69de29..e52ba66 100644
---- a/.codeclimate.yml
-+++ b/.codeclimate.yml
-@@ -0,0 +1,24 @@
-+---
-+engines:
-+  duplication:
-+    enabled: false
-+    config:
-+      languages:
-+      - ruby
-+      - javascript
-+      - python
-+      - php
-+  fixme:
-+    enabled: true
-+  radon:
-+    enabled: false
-+ratings:
-+  paths:
-+  - "**.inc"
-+  - "**.js"
-+  - "**.jsx"
-+  - "**.module"
-+  - "**.php"
-+  - "**.py"
-+  - "**.rb"
-+exclude_paths: []
+engines:
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - python
+  fixme:
+    enabled: true
+  radon:
+    enabled: false
+ratings:
+  paths:
+  - "**.py"
