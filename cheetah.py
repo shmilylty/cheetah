@@ -113,12 +113,14 @@ def process_pwd_file(options):
     for i in range(len(options.pwd_file_list)):
         file_name = options.pwd_file_list[i]
         print_highlight('[INFO] removing duplicate rows in '+file_name)
-        new_file_name = 'solved_' + file_name
+        time_str = str(time.strftime("%y-%m-%d(%H,%M,%S)_", time.localtime()))
+        new_file_name = 'data/solved_at_' + time_str + os.path.basename(file_name)
         with open(new_file_name, 'a') as new_file:
             for chunk in read_chunks(file_name):
                 new_file.write('\n'.join(set(chunk.split())).lower())
-        print_highlight('[HINT] duplicate rows have been removed')
-        options.pwd_file_list[i] = new_file_name
+            options.pwd_file_list[i] = new_file_name
+    print_highlight('[HINT] duplicate rows have been removed')
+    return
 
 
 def gen_random_header(options):
@@ -175,9 +177,9 @@ def req_get(payload, times, options):
         print_highlight('[INFO] web server responds successfully')
         if r.text in payload:
             print(white+get_time()+pwd_hint+' is '+reset+red+r.text+reset)
-            with open('find.list', 'a') as find_file:
+            with open('data/find.list', 'a') as find_file:
                 find_file.write(options.url+'\t\t'+r.text+'\n')
-            print_highlight('[HINT] password has been written to find.list file')
+            print_highlight('[HINT] password has been written to data/find.list file')
             return 'find'
         else:
             if options.verbose:
@@ -226,9 +228,9 @@ def req_post(payload, times, options):
             print_highlight('[INFO] web server responds successfully')
         if r.text in payload:
             print(white+get_time()+pwd_hint+' is '+reset+red+r.text+reset)
-            with open('find.list', 'a') as find_file:
+            with open('data/find.list', 'a') as find_file:
                 find_file.write(options.url+'\t\t'+r.text+'\n')
-            print_highlight('[HINT] password has been written to find.list')
+            print_highlight('[HINT] password has been written to data/find.list')
             return 'find'
         else:
             if options.verbose:
@@ -439,7 +441,7 @@ def main():
 use examples:
   python cheetah.py -u http://orz/orz.php
   python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
-  python cheetah.py -u http://orz/orz.asp -r get -c -p pwd.list
+  python cheetah.py -u http://orz/orz.asp -r get -c -p data/pwd.list
   python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
   python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
     parser.add_argument('-i', '--info', action='store_true', dest='info',
