@@ -3,6 +3,7 @@
 [English description](README.md) | [中文说明](README_zh.md)
 [English description](README.md) | [中文说明](README_zh.md)
 
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/) 
 [![Build Status](https://travis-ci.org/sunnyelf/cheetah.svg?branch=master)](https://travis-ci.org/sunnyelf/cheetah)
 [![Code Climate](https://codeclimate.com/github/sunnyelf/cheetah/badges/gpa.svg)](https://codeclimate.com/github/sunnyelf/cheetah)
