@@ -9,12 +9,21 @@ index e69de29..e52ba66 100644
 +    enabled: false
 +    config:
 +      languages:
++      - ruby
++      - javascript
 +      - python
++      - php
 +  fixme:
 +    enabled: true
 +  radon:
-+    enabled: true
++    enabled: false
 +ratings:
 +  paths:
++  - "**.inc"
++  - "**.js"
++  - "**.jsx"
++  - "**.module"
++  - "**.php"
 +  - "**.py"
++  - "**.rb"
 +exclude_paths: []
