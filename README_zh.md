@@ -52,7 +52,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 	  -n , --number         指定一次请求参数数量(默认自动设置)
 	  -u , --url            指定webshell url地址
 	  -b , --url-file       指定批量webshell urls文件
-	  -p [file [file ...]]  指定多个字典文件(默认使用pwd.list)
+	  -p [file [file ...]]  指定多个字典文件(默认使用data/pwd.list)
 	
 	使用示例:
 	  python cheetah.py -u http://orz/orz.php
