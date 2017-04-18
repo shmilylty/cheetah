@@ -82,4 +82,33 @@ python cheetah.py -h
 ![screenshot 2](iamges/2.png)
 ![screenshot 3](images/3.png)
 
+# 0x03 download and use and update cheetah #
 
+	git clone https://github.com/sunnyelf/cheetah.git
+	python cheetah.py 
+	git pull orgin master
+
+# 0x04 files description #
+
+	cheetah:
+	│  .codeclimate.yml
+	│  .gitignore
+	│  .travis.yml
+	│  cheetah.py              mian program
+	│  LICENSE
+	│  README.md
+	│  README_zh.md
+	│  update.py               update module
+	│
+	├─data 
+	│      big_shell_pwd.7z   big shell password file
+	│      pwd.list           default shell password file
+	│      url.list           default batch webshell urls file
+	│      user-agent.list    user agent file
+	│
+	└─images
+	        1.png
+	        2.png
+	        3.png
+	        4.png
+	        logo.jpg

@@ -73,16 +73,17 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 	│  .codeclimate.yml
 	│  .gitignore
 	│  .travis.yml
-	│  cheetah.py          主程序
+	│  cheetah.py             主程序
 	│  LICENSE
 	│  README.md
 	│  README_zh.md
-	│  update.py           更新模块
+	│  update.py              更新模块
 	│
 	├─data
-	│      pwd.list        默认指定字典文件
-	│      url.list        默认指定批量webshell url文件
-	│      user-agent.list 用户代理文件
+	│      big_shell_pwd.7z   高效shell大字典
+	│      pwd.list           默认指定字典文件
+	│      url.list           默认指定批量webshell url文件
+	│      user-agent.list    用户代理文件
 	│
 	└─images
 	        1.png
