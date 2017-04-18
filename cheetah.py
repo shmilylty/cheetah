@@ -153,12 +153,11 @@ def req_get(payload, times, options):
                          headers=header,
                          params=payload,
                          timeout=10)
-        error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
-        print_highlight('[ERROR] ' + str(e))
         print_highlight(error_msg)
         return 'error'
 
+    error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     if r.status_code == 404:
         print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url incorrect')
@@ -203,12 +202,11 @@ def req_post(payload, times, options):
                           headers=header,
                           data=payload,
                           timeout=10)
-        error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     except Exception as e:
         print_highlight('[ERROR] '+str(e))
-        print_highlight(error_msg)
         return 'error'
 
+    error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
     if r.status_code == 404:
         print_highlight(error_msg)
         print_highlight('[WARN] maybe the request url incorrect')
