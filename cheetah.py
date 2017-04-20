@@ -134,8 +134,7 @@ def gen_random_header(options):
               'Accept-Encoding': '*',
               'Accept-Language': '*',
               'Cache-Control': 'no-cache',
-              'Connection': 'keep-alive',
-              'Upgrade-Insecure-Requests': 1}
+              'Connection': 'keep-alive'}
     return header
 
 
