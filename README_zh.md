@@ -99,7 +99,7 @@ Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原�
 
 ## Windows
 ![screenshot 1](images/1.png)
-![screenshot 2](iamges/2.png)
+![screenshot 2](images/2.png)
 ![screenshot 3](images/3.png)
 
 # 0x06 问题 #
