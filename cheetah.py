@@ -437,12 +437,12 @@ def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawTextHelpFormatter,
         epilog='''\
-        use examples:
-          python cheetah.py -u http://orz/orz.php
-          python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
-          python cheetah.py -u http://orz/orz.asp -r get -c -p data/pwd.list
-          python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
-          python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
+use examples:
+  python cheetah.py -u http://orz/orz.php
+  python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
+  python cheetah.py -u http://orz/orz.asp -r get -c -p data/pwd.list
+  python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
+  python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
     parser.add_argument('-i', '--info', action='store_true', dest='info',
                         help='show information of cheetah and exit')
     parser.add_argument('-v', '--verbose', action='store_true', dest='verbose',
