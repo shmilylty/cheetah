@@ -46,7 +46,7 @@ reset = '\033[0m'
 
 
 def set_coding():
-    if sys.version_info.major == 2:
+    if sys.version_info.major == 2 and sys.version_info.major >= 7:
         if sys.getdefaultencoding() is not 'utf-8':
             reload(sys)
             sys.setdefaultencoding('utf-8')
