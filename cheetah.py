@@ -45,6 +45,13 @@ white = '\033[1;37m'
 reset = '\033[0m'
 
 
+def set_coding():
+    if sys.version_info.major == 2:
+        if sys.getdefaultencoding() is not 'utf-8':
+            reload(sys)
+            sys.setdefaultencoding('utf-8')
+
+
 def print_highlight(message):
     times = get_time()
     msg_level = {'INFO': green, 'HINT': white, 'WARN': yellow, 'ERROR': red}
@@ -54,14 +61,6 @@ def print_highlight(message):
             return
     print(white+times+message+reset)
     return
-
-try:
-    with open('data/user-agent.list') as agent_file:
-        agent_list = agent_file.readlines()
-except Exception as e:
-    print_highlight('[ERROR] '+str(e))
-    print_highlight('[INFO] the cheetah end execution')
-    exit(1)
 
 
 def get_time():
@@ -125,6 +124,8 @@ def process_pwd_file(options):
 def gen_random_header(options):
     if options.verbose:
         print_highlight('[INFO] generating a random request header')
+    with open('data/user-agent.list') as agent_file:
+        agent_list = agent_file.readlines()
     random_agent = random.choice(agent_list).replace('\n', '')
     reg = '[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+'
     header = {'Host': re.search(reg, options.url).group(0),
@@ -181,7 +182,7 @@ def req_get(payload, times, options):
         else:
             if options.verbose:
                 print_highlight(pwd_hint+' not in '+str(times)+' th group payload')
-            return 'unfind'
+            return 'notfind'
     else:
         print_highlight(error_msg)
         return 'error'
@@ -319,7 +320,7 @@ def set_max_req(options):
         for server in server_dict:
             if server in options.server:
                 print_highlight('[INFO] setting the number of request parameters '
-                                +str(server_dict[server][options.req_type]))
+                                + str(server_dict[server][options.req_type]))
                 options.max_request = server_dict[server][options.req_type]
                 break
 
@@ -426,6 +427,7 @@ def dict_attack(options):
 
 
 def main():
+    set_coding()
     print_banner()
 
     if len(sys.argv) == 1:
@@ -472,7 +474,7 @@ def main():
                         help='specify batch webshell urls file')
     parser.add_argument('-p', nargs='+', default='data/pwd.list',
                         dest='pwd_file_list', metavar='FILE',
-                        help='specify possword file(default pwd.list)')
+                        help='specify password file(default pwd.list)')
     options = parser.parse_args()
 
     if options.update:
@@ -523,6 +525,8 @@ def main():
         print_highlight('[HINT] using dictionary-based password attack')
         print_highlight('[INFO] cracking password of '+options.url)
         attack_res = dict_attack(options)
+        if attack_res == 'find' or attack_res == 'error':
+            pass
     if options.url_file is not None:
         print_highlight('[HINT] using batch cracking mode')
         print_highlight('[INFO] opening urls file '+options.url_file)
