@@ -419,7 +419,6 @@ def dict_attack(options):
     print_highlight('[WARN] the cheetah did not find the webshell password')
     print_highlight('[HINT] try to change a better password dictionary file')
     print_highlight('[HINT] try to specify a smaller value of parameter -n')
-    print_highlight('[HINT] try to use parameter -e enable random header')
     if options.req_type == 'post':
         print_highlight('[HINT] try to specify parameter -r for GET request')
     if options.req_type == 'get':
