@@ -47,7 +47,7 @@ python cheetah.py -h
 	
 	a very fast brute force webshell password tool.
 	
-	usage: cheetah1.py [-h] [-i] [-v] [-c] [-up] [-r] [-w] [-s] [-n] [-u] [-b]
+	usage: cheetah.py [-h] [-i] [-v] [-c] [-up] [-r] [-w] [-s] [-n] [-u] [-b]
 	                   [-p [file [file ...]]]
 	
 	optional arguments:
