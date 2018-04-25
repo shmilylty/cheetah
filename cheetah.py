@@ -151,7 +151,8 @@ def req_get(payload, times, options):
         r = requests.get(url=options.url,
                          headers=header,
                          params=payload,
-                         timeout=10)
+                         timeout=10,
+                         verify=False)
     except Exception as e:
         print_highlight(e.message)
         return 'error'
@@ -200,7 +201,8 @@ def req_post(payload, times, options):
         r = requests.post(url=options.url,
                           headers=header,
                           data=payload,
-                          timeout=10)
+                          timeout=10,
+                          verify=False)
     except Exception as e:
         print_highlight('[ERROR] '+str(e))
         return 'error'
@@ -255,7 +257,7 @@ def detect_web(options):
 
     if options.server == 'detect' or options.shell == 'detect':
         try:
-            get_rsp = requests.get(url=options.url, headers=header)
+            get_rsp = requests.get(url=options.url, headers=header, verify=False)
         except Exception as e:
             print_highlight('[ERROR] '+str(e))
             return 'error'
@@ -284,7 +286,7 @@ def detect_web(options):
         random_str = str(random.sample(string.printable, 5)).encode('hex')
         reg = 'http(s)?:\/\/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+'
         random_url = re.search(reg, options.url).group(0) + random_str
-        random_rsp = requests.get(url=random_url, headers=header)
+        random_rsp = requests.get(url=random_url, headers=header, verify=False)
         if random_rsp.status_code == 404:
             for server in server_list:
                 if server in str(random_rsp.text).lower():
