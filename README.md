@@ -7,6 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/sunnyelf/cheetah/badges/gpa.svg)](https://codeclimate.com/github/sunnyelf/cheetah)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cheetah-community/)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/sunnyelf)
+[![Twitter](https://img.shields.io/badge/follow-twitter-blue.svg)](https://twitter.com/jinglingbiaodi)
 
 # 0x00 cheetah
 
