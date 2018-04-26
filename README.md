@@ -11,9 +11,11 @@
 
 # 0x00 cheetah
 
-Cheetah is a dictionary-based brute force password webshell tool, running as fast as a cheetah hunt for prey. 
+[Cheetah](https://github.com/sunnyelf/cheetah) is a dictionary-based brute force password webshell tool, running as fast as a cheetah hunt for prey. 
 
 Cheetah's working principle is that it can submit a large number of detection passwords based on different web services at once, blasting efficiency is thousands of times other common brute force password webshell tools.
+
+This version may later be infrequently updated, please use the [Cheetah GUI](https://github.com/sunnyelf/cheetah-gui) version!
 
 # 0x01 features
 

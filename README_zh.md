@@ -10,9 +10,10 @@
 [![Twitter](https://img.shields.io/badge/follow-twitter-blue.svg)](https://twitter.com/jinglingbiaodi)
 
 # 0x00 介绍 #
-Cheetah是一款基于字典的webshell密码爆破工具，Cheetah的工作原理是能根据自动探测出的web服务设置相关参数一次性提交大量的探测密码进行爆破，爆破效率是其他普通webshell密码暴力破解工具上千倍。
 
-项目地址：[https://github.com/sunnyelf/cheetah](https://github.com/sunnyelf/cheetah)
+[Cheetah](https://github.com/sunnyelf/cheetah)是一款基于字典的webshell密码爆破工具，Cheetah的工作原理是能根据自动探测出的web服务设置相关参数一次性提交大量的探测密码进行爆破，爆破效率是其他普通webshell密码暴力破解工具上千倍。
+
+本版本可能以后会很少进行更新，请使用[Cheetah图形用户界面版本](https://github.com/sunnyelf/cheetah-gui)！
 
 # 0x01 特点 #
 
