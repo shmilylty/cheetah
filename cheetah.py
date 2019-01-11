@@ -74,6 +74,18 @@ def exit_cheetah(signum, frame):
 
 
 def print_info():
+    print("[+]Booting into Mainframe")
+    time.sleep(2)
+    
+    print("[!]Analyzing Processor")
+    time.sleep(2)
+    
+    print("[+]Initializing Cores")
+    time.sleep(1)
+    
+    print("[-]Reading documentation")
+    time.sleep(1)
+    
     print('program: ' + __program__)
     print('version: ' + __version__)
     print('license: ' + __license__)
