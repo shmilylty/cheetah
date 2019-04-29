@@ -35,6 +35,22 @@ This version may later be infrequently updated, please use the [Cheetah GUI](htt
 
 * Currently support php, jsp, asp, aspx webshell.
 
+
+### Docker Build
+
+ ```
+ $ docker build -t xshuden/cheetah .
+ ```
+
+### Docker Usage
+
+ ```
+ $ docker run --rm -it xshuden/cheetah
+ $ docker run --rm -it xshuden/cheetah -h
+ $ docker run --rm -it xshuden/cheetah -u http://google.com
+ ```
+
+
 # 0x02 parameter description
 
 python cheetah.py -h
