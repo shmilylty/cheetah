@@ -21,7 +21,7 @@ This version may later be infrequently updated, please use the [Cheetah GUI](htt
 
 * Fast speed.
 
-* Support python 2.x and python 3.x
+* Supports python 2.x and python 3.x
 
 * Support to read large password dictionary file.
 
@@ -29,11 +29,11 @@ This version may later be infrequently updated, please use the [Cheetah GUI](htt
 
 * Support for automatic detection of web services.
 
-* Support brute force batch webshell urls password.
+* Supports brute force batch webshell urls password.
 
 * Support for automatic forgery request header.
 
-* Currently support php, jsp, asp, aspx webshell.
+* Currently supports php, jsp, asp, aspx webshell.
 
 
 ### Docker Build
@@ -100,7 +100,7 @@ python cheetah.py -h
 ![screenshot 2](images/2.png)
 ![screenshot 3](images/3.png)
 
-# 0x03 download and use and update cheetah #
+# 0x03 download, use and update cheetah #
 
 	git clone https://github.com/sunnyelf/cheetah.git
 	python cheetah.py 
@@ -112,7 +112,7 @@ python cheetah.py -h
 	│  .codeclimate.yml
 	│  .gitignore
 	│  .travis.yml
-	│  cheetah.py              mian program
+	│  cheetah.py              main program
 	│  LICENSE
 	│  README.md
 	│  README_zh.md
